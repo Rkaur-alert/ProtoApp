@@ -17,6 +17,7 @@ namespace ProtoApp.Models
         public DateTime ReleaseDate { get; set; }
 
         public int GenreID { get; set; }
+
         public Genre Genre { get; set; }
 
         public Nullable<DateTime> DateAdded { get; set; }

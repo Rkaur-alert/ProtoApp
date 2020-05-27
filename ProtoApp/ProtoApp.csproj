@@ -282,6 +282,14 @@
     <Compile Include="Migrations\202005271639599_AddRequiredToGenreIDInMovie.Designer.cs">
       <DependentUpon>202005271639599_AddRequiredToGenreIDInMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005271739245_deletemovietable.cs" />
+    <Compile Include="Migrations\202005271739245_deletemovietable.Designer.cs">
+      <DependentUpon>202005271739245_deletemovietable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005271743013_MovieTableAgain.cs" />
+    <Compile Include="Migrations\202005271743013_MovieTableAgain.Designer.cs">
+      <DependentUpon>202005271743013_MovieTableAgain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -439,6 +447,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005271639599_AddRequiredToGenreIDInMovie.resx">
       <DependentUpon>202005271639599_AddRequiredToGenreIDInMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005271739245_deletemovietable.resx">
+      <DependentUpon>202005271739245_deletemovietable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005271743013_MovieTableAgain.resx">
+      <DependentUpon>202005271743013_MovieTableAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
