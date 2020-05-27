@@ -290,6 +290,10 @@
     <Compile Include="Migrations\202005271743013_MovieTableAgain.Designer.cs">
       <DependentUpon>202005271743013_MovieTableAgain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005271749378_NameNotNullGenreTable.cs" />
+    <Compile Include="Migrations\202005271749378_NameNotNullGenreTable.Designer.cs">
+      <DependentUpon>202005271749378_NameNotNullGenreTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -453,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005271743013_MovieTableAgain.resx">
       <DependentUpon>202005271743013_MovieTableAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005271749378_NameNotNullGenreTable.resx">
+      <DependentUpon>202005271749378_NameNotNullGenreTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
