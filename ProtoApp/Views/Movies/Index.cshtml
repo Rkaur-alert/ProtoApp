@@ -28,7 +28,7 @@
     <tr>
         <td>
             @*@Html.DisplayFor(modelItem => item.Name)*@
-            @Html.ActionLink(item.Name, "Details", "Movies", new { id = item.Id }, null)
+            @Html.ActionLink(item.Name, "Edit", "Movies", new { id = item.Id }, null)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Genre.Name)

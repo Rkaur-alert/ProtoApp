@@ -34,6 +34,7 @@ namespace ProtoApp.Controllers
             return View(movies);
         }
 
+        
         public ActionResult New()
         {
             var genres = _movieContext.Genres;
@@ -47,20 +48,21 @@ namespace ProtoApp.Controllers
         [HttpPost]
         public ActionResult Save(Movie movie)
         {
-            if(!ModelState.IsValid)
-            {
-                var genres = _movieContext.Genres;
-                var viewModel = new MovieGenreViewModel
-                {
-                    Movie = movie,
-                    Genres = genres
-                };
+            //if(!ModelState.IsValid)
+            //{
+            //    var genres = _movieContext.Genres;
+            //    var viewModel = new MovieGenreViewModel
+            //    {
+            //        Movie = movie,
+            //        Genres = genres
+            //    };
 
-                RedirectToAction("New", viewModel);
-            }
+            //    RedirectToAction("New", viewModel);
+            //}
 
             if(movie.Id == 0)
             {
+                movie.DateAdded = DateTime.Today;
                 _movieContext.Movies.Add(movie);
             }
             else
@@ -70,10 +72,25 @@ namespace ProtoApp.Controllers
                 movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.GenreID = movie.GenreID;
                 movieInDb.NumberInStock = movie.NumberInStock;
+                
             }
 
             _movieContext.SaveChanges();
             return RedirectToAction("Index", movie);
+        }
+
+        public ActionResult Edit(int Id)
+        {
+            var movie = _movieContext.Movies.SingleOrDefault(m => m.Id == Id);
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewModel = new MovieGenreViewModel
+            {
+                Movie = movie,
+                Genres = _movieContext.Genres.ToList()
+            };
+            return View("New",viewModel);
         }
 
         public ActionResult Details(int Id)
@@ -109,12 +126,7 @@ namespace ProtoApp.Controllers
 
         }
 
-        public ActionResult Edit(int id)
-        {
-            return Content("id = " + id);
-            
-        }
-
+     
 
         //public ActionResult Index(int? pageIndex, string sortBy)
         //{
