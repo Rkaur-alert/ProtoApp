@@ -1,0 +1,31 @@
+﻿@model ProtoApp.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<table class="table; table-bordered; table-hover; table-responsive" >
+    <tr>
+        <td>
+          Genre: @Model.Genre.Name
+        </td>
+        </tr>
+    <tr>
+        <td>
+           Release Date: @Model.ReleaseDate 
+        </td>
+        </tr>
+    <tr>
+        <td>
+            Number in Stock: @Model.NumberInStock
+        </td>
+        </tr>
+    <tr>
+        <td>
+           Date Added: @Model.DateAdded
+        </td>
+    </tr>
+</table>

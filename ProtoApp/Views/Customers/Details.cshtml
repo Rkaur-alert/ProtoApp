@@ -1,0 +1,29 @@
+﻿@model ProtoApp.Models.Customer
+    
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (@Model == null)
+{
+    <br />
+    <p>We don't have any customers yet!</p>
+}
+else
+{
+    <h2>@Model.Name</h2>
+   
+    <ul>
+        @if (Model.BirthDate.HasValue)
+        {
+            <li> Birthdate: @Model.BirthDate</li>
+        }
+
+
+        <li> MembershipType: @Model.MembershipType.Name</li>
+    </ul>
+    
+   
+}
+
+
