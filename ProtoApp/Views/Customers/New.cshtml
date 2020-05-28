@@ -4,7 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+@{
+    if (Model.Customer == null)
+    {
+        <h2>New Customer</h2>
+    }
+    else
+    {
+        <h2>Edit Customer</h2>
+    }
+}
 
 @using (@Html.BeginForm("Save", "Customers"))
 {
@@ -21,6 +30,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
     <div class="checkbox">
         <label>
