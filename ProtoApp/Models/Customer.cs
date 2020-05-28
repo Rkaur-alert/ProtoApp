@@ -26,6 +26,7 @@ namespace ProtoApp.Models
         public byte MembershipTypeId { get; set; }
         
         [Display(Name = "Date of birth")]
+        [Min18YearsIfAMember]
         public Nullable <DateTime> BirthDate { get; set; }
     }
 }
