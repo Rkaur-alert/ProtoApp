@@ -5,7 +5,7 @@
 }
 
 @{
-    if (Model.Customer == null)
+    if (Model.Customer.Id == 0)
     {
         <h2>New Customer</h2>
     }
@@ -46,5 +46,3 @@
 
 
 @Scripts.Render("~/bundles/jqueryval")
-
-

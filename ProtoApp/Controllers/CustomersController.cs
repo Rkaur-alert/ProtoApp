@@ -49,10 +49,8 @@ namespace ProtoApp.Controllers
         public ActionResult New()
         {
             var membershiptypes = _context.MembershipTypes.ToList();
-            var viewmodel = new NewCustomerViewModel
-            {
-                MembershipTypes = membershiptypes
-            };
+            var viewmodel = new NewCustomerViewModel(membershiptypes);
+
             return View("New", viewmodel);
         }
 
@@ -61,6 +59,9 @@ namespace ProtoApp.Controllers
         {
             if(!ModelState.IsValid)
             {
+                ModelState.Values.SelectMany(v => v.Errors).ToList()
+                    .ForEach(x => Console.WriteLine(x.ErrorMessage));
+
                 var customerViewModel = new NewCustomerViewModel
                 {
                     Customer = customer,
@@ -68,6 +69,7 @@ namespace ProtoApp.Controllers
                 };
             return View("New", customerViewModel);
             }
+
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
             else
