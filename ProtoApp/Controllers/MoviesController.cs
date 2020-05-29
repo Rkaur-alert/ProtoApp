@@ -55,9 +55,8 @@ namespace ProtoApp.Controllers
             if (!ModelState.IsValid)
             {
                 //var genres = _movieContext.Genres;
-                var viewModel = new MovieGenreViewModel
+                var viewModel = new MovieGenreViewModel(movie)
                 {
-                    Movie = movie,
                     Genres = _movieContext.Genres.ToList()
                 };
 
@@ -89,9 +88,8 @@ namespace ProtoApp.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieGenreViewModel
+            var viewModel = new MovieGenreViewModel(movie)
             {
-                Movie = movie,
                 Genres = _movieContext.Genres.ToList()
             };
             return View("New",viewModel);
