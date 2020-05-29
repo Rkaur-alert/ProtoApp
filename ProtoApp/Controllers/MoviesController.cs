@@ -40,7 +40,7 @@ namespace ProtoApp.Controllers
             var genres = _movieContext.Genres.ToList();
             var viewModel = new MovieGenreViewModel
             {
-                Movie = new Movie(),
+                //Movie = new Movie(),
                 Genres = genres
                 
                 

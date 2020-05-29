@@ -3,17 +3,7 @@
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
-    if (Model.Movie == null)
-    {
-        <h2>New Movie</h2>
-    }
-    else
-    {
-        <h2>Edit Movie</h2>
-    }
-
-}
+<h2>@Model.Title</h2>
 @using (@Html.BeginForm("Save", "Movies"))
 {
     @Html.ValidationSummary(true)
@@ -41,6 +31,10 @@
     </div>
     @Html.HiddenFor(m => m.Movie.Id)
     @Html.AntiForgeryToken()
+
+    //Code will break if properties are renamed with this approach
+    //@Html.Hidden("Movie.Id", (Model.Movie != null) ? Model.Movie.Id : 0 )
+    
     <button type="submit" class="btn btn-primary ">
         Save
     </button>
