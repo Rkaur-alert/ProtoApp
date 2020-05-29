@@ -37,30 +37,34 @@ namespace ProtoApp.Controllers
         
         public ActionResult New()
         {
-            var genres = _movieContext.Genres;
+            var genres = _movieContext.Genres.ToList();
             var viewModel = new MovieGenreViewModel
             {
+                Movie = new Movie(),
                 Genres = genres
+                
+                
             };
             return View(viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
-            //if(!ModelState.IsValid)
-            //{
-            //    var genres = _movieContext.Genres;
-            //    var viewModel = new MovieGenreViewModel
-            //    {
-            //        Movie = movie,
-            //        Genres = genres
-            //    };
+            if (!ModelState.IsValid)
+            {
+                //var genres = _movieContext.Genres;
+                var viewModel = new MovieGenreViewModel
+                {
+                    Movie = movie,
+                    Genres = _movieContext.Genres.ToList()
+                };
 
-            //    RedirectToAction("New", viewModel);
-            //}
+                return View("New", viewModel);
+            }
 
-            if(movie.Id == 0)
+            if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Today;
                 _movieContext.Movies.Add(movie);
