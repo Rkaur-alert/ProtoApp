@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using AutoMapper;
 
 namespace ProtoApp.Controllers.Api
 {
@@ -16,6 +16,15 @@ namespace ProtoApp.Controllers.Api
         public CustomersController()
         {
             _context = new ApplicationDbContext();
+
+
+            Customer customer = new Customer
+            {
+                Name = "Check",
+                BirthDate = new DateTime(1985, 02, 06)
+            };
+
+
         }
 
         //GET /api/customers
