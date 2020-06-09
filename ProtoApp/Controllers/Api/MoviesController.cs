@@ -18,37 +18,40 @@ namespace ProtoApp.Controllers.Api
             _context = new ApplicationDbContext();
         }
         //GET /api/movies
-        public IEnumerable<Movie> GetMovies()
+        public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList();
+            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
         }
 
         //GET /api/movies/1
-        public Movie GetMovie(int id)
+        public MovieDto GetMovie(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            return movie;
+            return Mapper.Map<Movie, MovieDto>(movie);
         }
 
         //POST /api/movies
         [HttpPost]
-        public Movie CreateMovie(Movie movie)
+        public MovieDto CreateMovie(MovieDto movieDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            var movie = Mapper.Map<MovieDto, Movie>(movieDto);
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
-            return movie;
+            movie.Id = movieDto.Id;
+
+            return movieDto;
         }
 
         //PUT /api/movies/1
         [HttpPut]
-        public void UpdateCustomer(int id, Movie movie)
+        public void UpdateCustomer(int id, MovieDto movieDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -58,11 +61,12 @@ namespace ProtoApp.Controllers.Api
             if (movieInDB == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            movieInDB.Name = movie.Name;
-            movieInDB.ReleaseDate = movie.ReleaseDate;
-            movieInDB.NumberInStock = movie.NumberInStock;
-            movieInDB.GenreID = movie.GenreID;
-            movieInDB.ReleaseDate = movie.ReleaseDate;
+            Mapper.Map<MovieDto, Movie>(movieDto, movieInDB);
+            //movieInDB.Name = movie.Name;
+            //movieInDB.ReleaseDate = movie.ReleaseDate;
+            //movieInDB.NumberInStock = movie.NumberInStock;
+            //movieInDB.GenreID = movie.GenreID;
+            //movieInDB.ReleaseDate = movie.ReleaseDate;
 
             _context.SaveChanges();
         }
