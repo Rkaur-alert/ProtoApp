@@ -34,5 +34,17 @@ namespace ProtoApp.Controllers.Api
         }
 
         //POST /api/movies
+        [HttpPost]
+        public Movie CreateMovie(Movie movie)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+
+            return movie;
+        }
+
     }
 }
