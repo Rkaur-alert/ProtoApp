@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using ProtoApp.Models;
 
 namespace ProtoApp.Dtos
 {
@@ -18,6 +19,7 @@ namespace ProtoApp.Dtos
 
         public byte MembershipTypeId { get; set; }
 
+ //      [Min18YearsIfAMember]
         public Nullable<DateTime> BirthDate { get; set; }
     }
 }
