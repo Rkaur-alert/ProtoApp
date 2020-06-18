@@ -92,6 +92,8 @@ namespace ProtoApp.Controllers.Api
 
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+
+            //return Ok();
         }
     }
 }
