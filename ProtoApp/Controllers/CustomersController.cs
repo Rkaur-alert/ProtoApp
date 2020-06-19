@@ -26,8 +26,11 @@ namespace ProtoApp.Controllers
 
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-            return View(customers);
+            //no need of list of customers because data table is now used
+            //var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            //return View(customers);
+
+            return View();
 
         }
 
