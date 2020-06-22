@@ -91,7 +91,8 @@
                                 method: "DELETE",
                                 success: function ()
                                 {
-                                    button.parents("tr").remove();
+                                    table.row(button.parents("tr")).remove();
+                                    button.parents("tr").remove().draw();
                                 }
                             });
                     }
