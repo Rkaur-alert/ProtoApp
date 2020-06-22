@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
+using ProtoApp.Models;
 
 namespace ProtoApp.Dtos
 {
@@ -19,6 +20,8 @@ namespace ProtoApp.Dtos
 
         [Required]
         public int GenreID { get; set; }
+
+        public GenreDto Genre { get; set; }
 
         public Nullable<DateTime> DateAdded { get; set; }
 

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using ProtoApp.Dtos;
+using System.Data.Entity;
 
 namespace ProtoApp.Controllers.Api
 {
@@ -20,7 +21,10 @@ namespace ProtoApp.Controllers.Api
         //GET /api/movies
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies
+                .Include(m => m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
         }
 
         //GET /api/movies/1

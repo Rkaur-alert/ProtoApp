@@ -30,8 +30,9 @@ namespace ProtoApp.Controllers
         public ActionResult Index()
         {
             //lowercase
-            var movies = _movieContext.Movies.Include(genre => genre.Genre).ToList();
-            return View(movies);
+            //var movies = _movieContext.Movies.Include(genre => genre.Genre).ToList();
+            //return View(movies);
+            return View();
         }
 
         
