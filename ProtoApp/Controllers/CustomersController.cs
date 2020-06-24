@@ -24,6 +24,7 @@ namespace ProtoApp.Controllers
             _context.Dispose();
         }
 
+       
         public ActionResult Index()
         {
             //no need of list of customers because data table is now used
