@@ -32,10 +32,13 @@ namespace ProtoApp.Controllers
             //lowercase
             //var movies = _movieContext.Movies.Include(genre => genre.Genre).ToList();
             //return View(movies);
-            return View();
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View();
+           
+            return View("ReadOnlyList");
         }
 
-        
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _movieContext.Genres.ToList();
