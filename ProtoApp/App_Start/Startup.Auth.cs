@@ -58,11 +58,11 @@ namespace ProtoApp
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "19859677732-dbd8bcjo3s5eoa12ofms1thc0bc3ascd.apps.googleusercontent.com" ,
+            ClientSecret = "iCbn7BiEQFnKFiolJe_AZ73m"
+            })  ;
         }
     }
 }
