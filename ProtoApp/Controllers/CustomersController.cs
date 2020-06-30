@@ -7,6 +7,8 @@ using ProtoApp.Models;
 using ProtoApp.ViewModels;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.MappingViews;
+using Microsoft.ApplicationInsights.Channel;
+using System.Runtime.Caching;
 
 namespace ProtoApp.Controllers
 {
@@ -25,8 +27,14 @@ namespace ProtoApp.Controllers
         }
 
        
-        public ActionResult Index()
+        public ViewResult Index()
         {
+            if (MemoryCache.Default["Genres"] == null)
+            {
+                MemoryCache.Default["Genres"] = _context.Genres.ToList();
+            }
+
+            var genres = MemoryCache.Default["Genres"] as IEnumerable<Genre>;
             //no need of list of customers because data table is now used
             //var customers = _context.Customers.Include(c => c.MembershipType).ToList();
             //return View(customers);
