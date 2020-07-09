@@ -30,5 +30,7 @@ namespace ProtoApp.Models
         ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         [Display(Name = "Number In Stock")]
         public int NumberInStock { get; set; }
+
+        public byte NumberAvailable { get; set; }
     }
 }
