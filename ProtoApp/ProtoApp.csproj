@@ -354,6 +354,10 @@
     <Compile Include="Migrations\202007071715169_AddNumberAvailableToMovies.Designer.cs">
       <DependentUpon>202007071715169_AddNumberAvailableToMovies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007101420003_Check.cs" />
+    <Compile Include="Migrations\202007101420003_Check.Designer.cs">
+      <DependentUpon>202007101420003_Check.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -492,8 +496,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Scripts\bloodhound.js" />
-    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -580,9 +582,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
-    <Content Include="Scripts\typeahead.bundle.min.js" />
-    <Content Include="Scripts\typeahead.jquery.js" />
-    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -722,6 +721,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007071715169_AddNumberAvailableToMovies.resx">
       <DependentUpon>202007071715169_AddNumberAvailableToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007101420003_Check.resx">
+      <DependentUpon>202007101420003_Check.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
