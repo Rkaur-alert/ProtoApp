@@ -8,6 +8,7 @@ namespace ProtoApp.Controllers
 {
     public class RentalsController : Controller
     {
+        //GET: Rentals
         public ActionResult New()
         {
             return View();
