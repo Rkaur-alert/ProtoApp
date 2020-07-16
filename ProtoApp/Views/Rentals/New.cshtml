@@ -1,26 +1,32 @@
-﻿
+﻿@model dynamic
+
 @{
     ViewBag.Title = "New Rental Form";
 }
 
 <h2>New Rental Form</h2>
 
-<form id="newRental">
+<form id="newRental" action="">
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" value="" required class="form-control" />
+            <input id="customer" name="customer" required type="text" value="" 
+                   data-rule-validCustomer="true"  
+                   class="form-control" />
         </div>
     </div>
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" type="text" value="" class="form-control" />   
+            <input id="movie" name="movie"  type="text" value="" 
+                   data-rule-validMovies="true" class="form-control" />   
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-4"> <ul id="movies" class="list-group"></ul> </div>
+        <div class="col-md-4"> 
+            <ul id="movies" class="list-group">
+                </ul> </div>
     </div>
     
     
@@ -31,13 +37,15 @@
 
 @section scripts
 {
-   @Scripts.Render("~/bundles/jqueryval")
+   
     <script>
         $(document).ready(function () {
 
             var vm = {
                 movieIds: []
             };
+
+
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -57,6 +65,7 @@
                     source: customers
                 }).on("typeahead:select", function (e, customer) {
                     vm.customerId = customer.id;
+                    console.log(vm.customerId);
                 });
 
             var movies = new Bloodhound({
@@ -78,25 +87,54 @@
                 $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
                 $("#movie").typeahead("val", ""); //clear the textbox after adding the value to the list
                 vm.movieIds.push(movie.id);
+                console.log(vm.movieIds);
             });
 
-            //$("newRental").validate({});
-            $("#newRental").submit(function (e) {
-                e.preventDefault();
 
-                $.ajax({
-                    url: "/api/NewRentals",
-                    method: "post",
-                    data: vm
-                })
-                .done(
-                    function () {
-                        toastr.success("Rentals successfully recorded!");
+
+            $.validator.addMethod("validCustomer", function () {
+                console.log(vm);
+                return vm.customerId && vm.customerId !== 0;
+            }, "Please select a valid customer");
+
+            $.validator.addMethod("validMovies", function () {
+                console.log("movies added");
+                return vm.movieIds.length > 0;
+            }, "Please select at least one movie.");
+
+            var validator = $("#newRental").validate({
+                submitHandler: function ()
+                {
+                    console.log("handle - validator");
+
+                    $.ajax({
+                        url: "/api/newRentals",
+                        method: "post",
+                        data: vm
                     })
-                .fail(function () {
-                    toastr.error("An error occurred");
-                });
+                        .done(function () {
+                                toastr.success("Rentals successfully recorded!");
+                                console.log("Rentals successfully recorded!");
 
+                                $("#customer").typeahead("val", "");
+                                $("#movie").typeahead("val", "");
+                                $("#movies").empty();
+
+                                vm = { movieIds: [] };
+                                validator.resetForm();
+                            })
+                        .fail(function () {
+                            toastr.error("An error occurred");
+                            console.log("An error occurred");
+
+                           
+
+                        });
+
+                    console.log("handle - validator");
+                    return false;
+
+                }
             });
         });
 

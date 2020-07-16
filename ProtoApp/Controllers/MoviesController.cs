@@ -70,6 +70,7 @@ namespace ProtoApp.Controllers
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Today;
+                movie.NumberAvailable = (byte)movie.NumberInStock;
                 _movieContext.Movies.Add(movie);
             }
             else
